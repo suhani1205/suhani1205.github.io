@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suhani Neema — Software Engineer</title>
+<meta name="description" content="Software Engineer architecting cloud-native systems for 150k+ users in healthcare. Java, Spring Boot, AWS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #fef3c7;
+    --yellow-soft: #fffbeb;
+    --yellow-deep: #fde68a;
+    --lilac: #ddd6fe;
+    --lilac-soft: #ede9fe;
+    --lilac-deep: #c4b5fd;
+    --purple: #7c3aed;
+    --purple-deep: #5b21b6;
+    --pink: #f9a8d4;
+    --pink-deep: #ec4899;
+    --ink: #2e1065;
+    --ink-2: #6d4ca0;
+    --ink-3: #a48fc8;
+    --line: #e9d5ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--yellow);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -20%; right: -10%;
+    width: 70%; height: 80%;
+    background: radial-gradient(circle, var(--lilac) 0%, transparent 60%);
+    filter: blur(60px);
+    opacity: 0.7;
+    z-index: 0;
+    pointer-events: none;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -10%; left: -10%;
+    width: 60%; height: 60%;
+    background: radial-gradient(circle, var(--pink) 0%, transparent 60%);
+    filter: blur(70px);
+    opacity: 0.4;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  ::selection { background: var(--purple); color: var(--yellow); }
+
+  /* TOP BAR */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(254, 243, 199, 0.7);
+    backdrop-filter: blur(12px);
+    transition: all 0.25s;
+    border-bottom: 1px solid transparent;
+  }
+  .topbar.scrolled { border-bottom-color: var(--line); }
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .brand .ast { color: var(--purple); }
+  .topbar nav {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .topbar nav a {
+    font-size: 0.85rem;
+    color: var(--ink-2);
+    text-decoration: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .topbar nav a:hover { color: var(--purple); background: var(--lilac-soft); }
+
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 5rem 0;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 9rem 0 3rem;
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--lilac-soft);
+    color: var(--purple-deep);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
+    border: 1px solid var(--lilac);
+    margin-bottom: 1.75rem;
+  }
+  .hero-status .dot {
+    width: 7px; height: 7px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #10b981;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 50% { opacity: 0.5; } }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--purple);
+    font-weight: 500;
+  }
+  .hero h1 .squiggle {
+    position: relative;
+    display: inline-block;
+  }
+  .hero h1 .squiggle::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4 Q 7.5 0, 15 4 T 30 4 T 45 4 T 60 4' stroke='%23f9a8d4' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 60px 8px;
+    background-repeat: repeat-x;
+  }
+  .hero-tagline {
+    font-size: 1.1rem;
+    color: var(--ink-2);
+    line-height: 1.65;
+    max-width: 620px;
+    margin: 0 auto 2.5rem;
+  }
+  .hero-tagline strong { color: var(--ink); font-weight: 500; }
+
+  .social-row {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .social-btn {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: var(--yellow-soft);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+  .social-btn:hover {
+    background: var(--lilac-soft);
+    border-color: var(--lilac-deep);
+    color: var(--purple);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.15);
+  }
+  .social-btn svg { width: 22px; height: 22px; }
+  .resume-btn {
+    margin-left: 0.5rem;
+    background: var(--purple);
+    color: white;
+    text-decoration: none;
+    padding: 0 1.5rem;
+    height: 48px;
+    border-radius: 14px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.2s;
+  }
+  .resume-btn:hover {
+    background: var(--purple-deep);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    margin: 4rem auto 0;
+    max-width: 760px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: var(--yellow-soft);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 1.25rem 0;
+  }
+  .stat {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child { border-right: none; }
+  .stat .num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--purple);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+  }
+  .stat .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--ink-2);
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+  }
+
+  /* SECTION HEADER */
+  .sec-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .sec-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .sec-header h2 em {
+    font-style: italic;
+    color: var(--purple);
+    font-weight: 400;
+  }
+  .sec-header p {
+    color: var(--ink-2);
+    margin-top: 0.75rem;
+    font-size: 1rem;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .skill-card {
+    background: var(--yellow-soft);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 2rem 1.75rem;
+    transition: all 0.3s;
+    text-align: center;
+  }
+  .skill-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--lilac-deep);
+    box-shadow: 0 12px 32px rgba(124, 58, 237, 0.1);
+  }
+  .skill-icon {
+    width: 84px; height: 84px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-size: 2.25rem;
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.12);
+  }
+  .skill-card.purple .skill-icon { background: linear-gradient(135deg, var(--lilac), var(--lilac-deep)); }
+  .skill-card.yellow .skill-icon { background: linear-gradient(135deg, var(--yellow-deep), #f3d56b); }
+  .skill-card.pink .skill-icon { background: linear-gradient(135deg, var(--pink), var(--pink-deep)); }
+  .skill-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+  .skill-card p {
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+  }
+  .skill-card p strong { color: var(--purple); font-weight: 500; }
+  .skill-card .tech-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+  }
+  .skill-card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    justify-content: center;
+  }
+  .skill-card .tags span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--purple-deep);
+    background: var(--lilac-soft);
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  /* EXPERIENCE */
+  .exp-list { max-width: 800px; margin: 0 auto; }
+  .exp-item {
+    background: var(--yellow-soft);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 1.75rem;
+    margin-bottom: 1.25rem;
+    transition: all 0.25s;
+  }
+  .exp-item:hover {
+    border-color: var(--lilac-deep);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.08);
+  }
+  .exp-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+  .exp-head h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .exp-when {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-2);
+    background: var(--lilac-soft);
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+    border: 1px solid var(--lilac);
+    white-space: nowrap;
+  }
+  .exp-company {
+    color: var(--purple);
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.85rem;
+  }
+  .exp-summary {
+    color: var(--ink-2);
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+  }
+  .exp-bullets li {
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    padding: 0.4rem 0 0.4rem 1.4rem;
+    position: relative;
+  }
+  .exp-bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--purple);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    top: 0.45rem;
+  }
+  .exp-bullets li strong {
+    color: var(--ink);
+    font-weight: 500;
+    background: linear-gradient(180deg, transparent 60%, var(--yellow-deep) 60%);
+    padding: 0 2px;
+  }
+
+  /* PROJECTS */
+  .projects-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .project {
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+  }
+  .project:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(46, 16, 101, 0.12);
+  }
+  .project.purple { background: linear-gradient(135deg, var(--lilac-soft), var(--lilac)); border-color: var(--lilac-deep); }
+  .project.yellow { background: linear-gradient(135deg, var(--yellow-soft), var(--yellow-deep)); border-color: #f3d56b; }
+  .project.pink { background: linear-gradient(135deg, #fdf2f8, var(--pink)); border-color: var(--pink-deep); }
+  .project.featured { grid-column: span 2; }
+
+  .project-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--ink);
+    background: rgba(255,255,255,0.65);
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+    letter-spacing: 0.03em;
+    margin-bottom: 1rem;
+    width: fit-content;
+    font-weight: 500;
+  }
+  .project h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+  .project p {
+    color: var(--ink);
+    opacity: 0.85;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+  .project p strong { font-weight: 600; opacity: 1; }
+  .project .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .project .stack span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink);
+    padding: 0.22rem 0.55rem;
+    background: rgba(255,255,255,0.6);
+    border-radius: 6px;
+  }
+  .project-deco {
+    position: absolute;
+    top: -15px; right: -10px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 5rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* RECOGNITION */
+  .recog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .recog-card {
+    background: var(--yellow-soft);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .recog-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--lilac-deep);
+    box-shadow: 0 10px 24px rgba(124, 58, 237, 0.1);
+  }
+  .recog-icon {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 2.5rem;
+    color: var(--purple);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .recog-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+  }
+  .recog-card .sub {
+    color: var(--ink-2);
+    font-size: 0.83rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+  .recog-card .when {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-3);
+    letter-spacing: 0.05em;
+  }
+
+  /* CONTACT */
+  .contact-section {
+    text-align: center;
+    padding: 2rem 0;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .contact-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+  }
+  .contact-section h2 em {
+    font-style: italic;
+    color: var(--purple);
+    font-weight: 400;
+  }
+  .contact-section .small {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--ink-2);
+    margin-bottom: 1.75rem;
+  }
+  .contact-details {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .contact-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--yellow-soft);
+    border: 1px solid var(--line);
+    padding: 0.7rem 1.25rem;
+    border-radius: 100px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.25s;
+  }
+  .contact-pill:hover {
+    background: var(--lilac-soft);
+    border-color: var(--lilac-deep);
+    color: var(--purple);
+    transform: translateY(-2px);
+  }
+  .contact-pill svg { width: 16px; height: 16px; }
+
+  footer {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    margin-top: 4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-3);
+    border-top: 1px solid var(--line);
+  }
+  footer .heart { color: var(--pink-deep); }
+
+  .fade {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .fade.in { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .skills-grid { grid-template-columns: 1fr; }
+    .projects-row { grid-template-columns: 1fr; }
+    .project.featured { grid-column: auto; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 1rem 0; padding: 1.25rem; }
+    .stat { border-right: none; }
+    .stat:nth-child(odd) { border-right: 1px solid var(--line); }
+    .recog-grid { grid-template-columns: 1fr; }
+    .topbar { padding: 1rem 1.25rem; }
+    .topbar nav a { padding: 0.4rem 0.7rem; font-size: 0.8rem; }
+    .hero { padding: 7rem 0 2.5rem; }
+    .divider { margin: 3.5rem 0; }
+    .stats-bar { margin-top: 3rem; }
+  }
+  @media (max-width: 480px) {
+    .topbar nav { gap: 0.1rem; }
+    .topbar nav a { padding: 0.35rem 0.55rem; font-size: 0.75rem; }
+    .exp-head { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <a href="#top" class="brand">suhani<span class="ast">.</span></a>
+  <nav>
+    <a href="#skills">Skills</a>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#recognition">Recognition</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-status"><span class="dot"></span>Open to SDE-II / Senior SDE roles</span>
+    <h1>I'm <em>Suhani Neema</em> — I architect <span class="squiggle">cloud-native systems</span> at scale.</h1>
+    <p class="hero-tagline">
+      <strong>Software Development Engineer</strong> with <strong>3+ years</strong> at Cavista Technology, owning end-to-end design of healthcare microservices serving <strong>150,000+ users</strong>. I'm the engineer who proposes the architecture, ships it to production, and onboards the next person onto it. Previously interned at Amazon.
+    </p>
+
+    <div class="social-row">
+      <a href="https://linkedin.com/in/suhanineema12" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+      </a>
+      <a href="https://github.com/suhani1205" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a href="https://leetcode.com/u/practiceProb/" target="_blank" rel="noopener" class="social-btn" aria-label="LeetCode" title="LeetCode">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+      </a>
+      <a href="mailto:suhana672@gmail.com" class="social-btn" aria-label="Email" title="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+      <a href="#" class="resume-btn" id="resume-link">
+        Resume <span style="font-size: 0.8em">↗</span>
+      </a>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="num">150K+</div>
+        <div class="lbl">Users on systems<br>I designed</div>
+      </div>
+      <div class="stat">
+        <div class="num">40%</div>
+        <div class="lbl">Performance gain<br>(DynamoDB GSI)</div>
+      </div>
+      <div class="stat">
+        <div class="num">6×</div>
+        <div class="lbl">Employee<br>of the Month</div>
+      </div>
+      <div class="stat">
+        <div class="num">8.88</div>
+        <div class="lbl">CGPA<br>at graduation</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-header">
+      <h2>What I <em>do</em></h2>
+      <p>Three areas where I bring real production experience — not buzzwords.</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card purple">
+        <div class="skill-icon">🏗️</div>
+        <h3>Architecture &amp; Design</h3>
+        <p>I propose, defend, and ship architecture independently. <strong>Authored LLDs</strong> reviewed by senior architects. Drove the OAuth 2.0 + RBAC rollout across HomeCare microservices and the GSI indexing strategy that gave Suncoast a 40% perf gain.</p>
+        <div class="tech-label">Practices</div>
+        <div class="tags">
+          <span>Microservices</span><span>Event-Driven</span><span>SOLID</span><span>Design Patterns</span><span>API Design</span><span>System LLDs</span>
+        </div>
+      </div>
+
+      <div class="skill-card yellow">
+        <div class="skill-icon">⚙️</div>
+        <h3>Backend Engineering</h3>
+        <p>3+ years of production Java &amp; Spring Boot. Built REST APIs consumed by <strong>150k+ users</strong>, designed the DynamoDB layer at Suncoast, and grew unit-test coverage from <strong>10% → 85%</strong> with JUnit and Mockito.</p>
+        <div class="tech-label">Stack</div>
+        <div class="tags">
+          <span>Java</span><span>Spring Boot</span><span>Kafka</span><span>DynamoDB</span><span>MySQL</span><span>JUnit</span>
+        </div>
+      </div>
+
+      <div class="skill-card pink">
+        <div class="skill-icon">☁️</div>
+        <h3>Cloud &amp; DevOps</h3>
+        <p>Built and maintained zero-downtime AWS pipelines with health checks, phased rollouts, and rollback safety. Cut GitLab CI/CD build time <strong>from 20 → 7 minutes</strong> through parallelization and caching.</p>
+        <div class="tech-label">Stack</div>
+        <div class="tags">
+          <span>AWS EC2</span><span>S3</span><span>EMR</span><span>IAM</span><span>Docker</span><span>GitLab CI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- EXPERIENCE -->
+  <section id="work">
+    <div class="sec-header">
+      <h2>Where I've <em>shipped</em></h2>
+      <p>The work that's defined the last three years.</p>
+    </div>
+
+    <div class="exp-list">
+      <article class="exp-item">
+        <div class="exp-head">
+          <h3>Software Development Engineer</h3>
+          <span class="exp-when">Jul 2022 — Present</span>
+        </div>
+        <div class="exp-company">Cavista Technology · Indore, India</div>
+        <p class="exp-summary">Architecting cloud-native services for two healthcare platforms — <strong>Suncoast</strong> (terminally ill patient care, 150k+ users) and <strong>HomeCare</strong> (home nursing, 15k+ doctors). Owning systems from LLD through production deployment.</p>
+        <ul class="exp-bullets">
+          <li>Owned the DynamoDB storage layer end-to-end at Suncoast — independently identified query bottlenecks, proposed GSI-based indexing, and drove a <strong>40% performance gain</strong> for 100k+ users.</li>
+          <li>Designed and shipped the <strong>medical report auto-population API</strong> consumed by 150k+ healthcare professionals, applying SOLID for extensibility.</li>
+          <li>Cut GitLab CI/CD build time by <strong>65% (20 → 7 min)</strong>; grew unit-test coverage from <strong>10% to 85%</strong> with JUnit + Mockito.</li>
+          <li>Identified inter-service security gaps in HomeCare and proposed token-based <strong>OAuth 2.0</strong>; designed <strong>RBAC from scratch</strong> for 15k+ doctors.</li>
+          <li>Refactored legacy ASPX/Razor pages to Vue.js + React with distributed caching — delivered <strong>40% perf improvement</strong> on high-traffic endpoints.</li>
+          <li>Implemented Kafka event streaming and zero-downtime AWS pipelines with phased rollouts and rollback safety.</li>
+          <li><strong>Onboarded 2 junior engineers</strong> onto the storage module after architecting it solo.</li>
+        </ul>
+      </article>
+
+      <article class="exp-item">
+        <div class="exp-head">
+          <h3>Software Development Engineer Intern</h3>
+          <span class="exp-when">Jan — Jun 2022</span>
+        </div>
+        <div class="exp-company">Amazon · Bangalore, India</div>
+        <p class="exp-summary">Six months at Amazon's Development Center building data export and processing infrastructure.</p>
+        <ul class="exp-bullets">
+          <li>Conducted POC across Excel generation libraries (Apache POI, J-Excel) on perf, memory, and S3 compatibility — shipped automated export pipeline serving <strong>140k daily users</strong>.</li>
+          <li>Developed REST APIs for fetching and processing customer transaction and behavior data.</li>
+          <li>Built a <strong>custom CLI tool for internal job execution</strong>, materially reducing Sev2 tickets.</li>
+          <li>Used Amazon EMR for distributed batch processing with clean DAO patterns and code-quality gates.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-header">
+      <h2>Selected <em>work</em></h2>
+      <p>Case studies of systems I've owned end-to-end.</p>
+    </div>
+
+    <div class="projects-row">
+      <article class="project purple featured">
+        <div class="project-deco">api</div>
+        <span class="project-tag">★ Production · Suncoast · 150k+ users</span>
+        <h3>Medical Report Auto-Population API</h3>
+        <p>The core API powering Suncoast's clinical workflows for terminally ill patient care. <strong>Owned end-to-end design</strong> — service boundaries, SOLID for extensibility, and ownership from architectural review through production rollout. <strong>Sub-200ms response on the hot path</strong>; zero re-architecting required as the user base scaled past 150k healthcare professionals.</p>
+        <div class="stack">
+          <span>Java</span><span>Spring Boot</span><span>DynamoDB</span><span>AWS EC2</span><span>REST</span><span>SOLID</span>
+        </div>
+      </article>
+
+      <article class="project yellow">
+        <div class="project-deco">db</div>
+        <span class="project-tag">★ Production · 40% perf gain</span>
+        <h3>DynamoDB Indexing Strategy</h3>
+        <p>Independently identified query bottlenecks in the Suncoast storage layer, proposed a <strong>GSI-based indexing solution</strong>, and authored LLDs reviewed by senior architects. Drove <strong>40% performance improvement</strong> for 100k+ users.</p>
+        <div class="stack">
+          <span>DynamoDB</span><span>GSI</span><span>System Design</span><span>LLD</span>
+        </div>
+      </article>
+
+      <article class="project pink">
+        <div class="project-deco">auth</div>
+        <span class="project-tag">★ Production · 15k+ doctors</span>
+        <h3>OAuth 2.0 &amp; RBAC Rollout</h3>
+        <p>Identified inter-service security gaps in HomeCare and <strong>proposed token-based OAuth 2.0</strong>. Designed RBAC from scratch enforcing admin vs. doctor access — secured team buy-in and rolled out across microservices.</p>
+        <div class="stack">
+          <span>OAuth 2.0</span><span>RBAC</span><span>Spring Security</span>
+        </div>
+      </article>
+
+      <article class="project purple">
+        <div class="project-deco">nlp</div>
+        <span class="project-tag">✨ Personal · NLP</span>
+        <h3>Test Evaluation System</h3>
+        <p>NLP-based automated grading evaluator using <strong>TF-IDF, Bag of Words, and tokenization</strong> to compute semantic similarity between student responses and reference answers — fair, scalable assessment without manual review.</p>
+        <div class="stack">
+          <span>Python</span><span>NLTK</span><span>Gensim</span><span>NLP</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- RECOGNITION -->
+  <section id="recognition">
+    <div class="sec-header">
+      <h2>Recognition &amp; <em>education</em></h2>
+      <p>A few markers along the way.</p>
+    </div>
+
+    <div class="recog-grid">
+      <div class="recog-card">
+        <div class="recog-icon">6×</div>
+        <h3>Employee of the Month</h3>
+        <div class="sub">Recognized by VP and Product Head at Cavista for rapidly delivering critical Suncoast features.</div>
+        <div class="when">2023 — 2025</div>
+      </div>
+
+      <div class="recog-card">
+        <div class="recog-icon">★</div>
+        <h3>1st — BIT Mesra Hackathon</h3>
+        <div class="sub">Out-engineered teams across multiple universities in 36 hours.</div>
+        <div class="when">2022</div>
+      </div>
+
+      <div class="recog-card">
+        <div class="recog-icon">8.88</div>
+        <h3>B.Tech, Computer Science</h3>
+        <div class="sub">Medi-Caps University, Indore — CGPA 8.88 / 10.0</div>
+        <div class="when">2018 — 2022</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="small">Love to hear from you,</div>
+    <h2>let's <em>talk</em>.</h2>
+    <p style="color: var(--ink-2); font-size: 1.02rem; margin: 1.5rem auto 2rem; max-width: 520px;">
+      Open to <strong style="color: var(--ink);">SDE-II / Senior SDE roles</strong> — international visa-sponsored opportunities and top-tier Indian product companies. Always up for a conversation on distributed systems, cloud architecture, or healthcare engineering.
+    </p>
+
+    <div class="contact-details">
+      <a href="mailto:suhana672@gmail.com" class="contact-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        suhana672@gmail.com
+      </a>
+      <a href="https://github.com/suhani1205" target="_blank" rel="noopener" class="contact-pill">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/suhani1205
+      </a>
+      <a href="https://leetcode.com/u/practiceProb/" target="_blank" rel="noopener" class="contact-pill">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+        leetcode.com/practiceProb
+      </a>
+      <a href="https://linkedin.com/in/suhanineema12" target="_blank" rel="noopener" class="contact-pill">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        linkedin.com/in/suhanineema12
+      </a>
+    </div>
+  </section>
+
+  <footer>© 2026 · made with <span class="heart">♥</span> by Suhani Neema</footer>
+
+</main>
+
+<script>
+  const topbar = document.getElementById('topbar');
+  window.addEventListener('scroll', () => {
+    topbar.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('in');
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('section').forEach(el => {
+    el.classList.add('fade');
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>
